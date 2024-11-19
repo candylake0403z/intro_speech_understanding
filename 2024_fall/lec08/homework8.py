@@ -10,6 +10,10 @@ def dft_matrix(N):
     @result:
     W (NxN array): a matrix of dtype='complex' whose (k,n)^th element is:
            W[k,n] = cos(2*np.pi*k*n/N) - j*sin(2*np.pi*k*n/N)
+           Equivalent to W[k,n] = exp(-2j * np.pi * k * n / N)
     '''
-    raise RuntimeError("You need to write this part")
-
+    k = np.arange(N).reshape((N, 1))  # Column vector of indices
+    n = np.arange(N)                 # Row vector of indices
+    exponent = -2j * np.pi * k * n / N
+    W = np.exp(exponent)             # Compute the complex exponential
+    return W
