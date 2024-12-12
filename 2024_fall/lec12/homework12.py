@@ -9,5 +9,11 @@ def synthesize(text, lang, filename):
     lang (str) - the language in which you want to synthesize it
     filename (str) - the filename in which it should be saved
     '''
-    raise RuntimeError("FAIL! You need to change this function so that it works!")
-
+    try:
+        # Generate the speech
+        tts = gtts.gTTS(text=text, lang=lang)
+        # Save it to the file
+        tts.save(filename)
+        print(f"Speech synthesis successful! File saved to {filename}.")
+    except Exception as e:
+        print(f"An error occurred during synthesis: {e}")
